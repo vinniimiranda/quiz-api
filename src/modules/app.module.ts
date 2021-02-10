@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { CategoryModule } from './category/category.module';
 import * as Joi from '@hapi/joi';
 
 @Module({
@@ -22,6 +22,7 @@ import * as Joi from '@hapi/joi';
     }),
     AuthModule,
     UsersModule,
+    CategoryModule,
     ConfigModule.forRoot({
       validationSchema: Joi.object({
         JWT_SECRET: Joi.string().required(),
@@ -30,7 +31,7 @@ import * as Joi from '@hapi/joi';
       }),
     }),
   ],
-  controllers: [AppController],
+  controllers: [],
   providers: [AppService],
 })
 export class AppModule {}
